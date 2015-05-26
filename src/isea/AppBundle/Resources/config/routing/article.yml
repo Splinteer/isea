@@ -1,0 +1,30 @@
+backoffice_article:
+    path:     /
+    defaults: { _controller: "iseaAppBundle:Article:index" }
+
+backoffice_article_show:
+    path:     /{id}/show
+    defaults: { _controller: "iseaAppBundle:Article:show" }
+
+backoffice_article_new:
+    path:     /new
+    defaults: { _controller: "iseaAppBundle:Article:new" }
+
+backoffice_article_create:
+    path:     /create
+    defaults: { _controller: "iseaAppBundle:Article:create" }
+    methods:  POST
+
+backoffice_article_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "iseaAppBundle:Article:edit" }
+
+backoffice_article_update:
+    path:     /{id}/update
+    defaults: { _controller: "iseaAppBundle:Article:update" }
+    methods:  [POST, PUT]
+
+backoffice_article_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "iseaAppBundle:Article:delete" }
+    methods:  [POST, DELETE]

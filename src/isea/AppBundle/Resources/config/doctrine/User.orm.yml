@@ -1,0 +1,36 @@
+isea\AppBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: isea\AppBundle\Entity\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        prenom:
+            type: string
+            length: 255
+        mail:
+            type: string
+            length: 255
+        password:
+            type: string
+            length: 255
+        admin:
+            type: integer
+        fonction:
+            type: string
+            length: 255
+        photo:
+            type: text
+    oneToMany:
+        articleUser:
+            targetEntity: Article
+            mappedBy: user
+    
+    lifecycleCallbacks: {  }

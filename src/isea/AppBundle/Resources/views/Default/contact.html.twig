@@ -1,0 +1,40 @@
+{% extends "iseaAppBundle::Layout/light_layout.html.twig" %}
+{% block body %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-md-4 col-md-offset-4">
+			<h1 id='scrollTo' class="scrollTo"><span class="cadre">Nous contacter</span></h1>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2">
+			<h2>La chose la plus simple, c'est de nous demander...</h2>
+		</div>
+		<div class="col-xs-2 col-xs-offset-5">
+			<hr>
+			<div style="font-weight: bold; font-size: 1.3rem;">ISEA FRANCE</div>
+			Route de Valence<br>
+			38360 NOYAREY<br>
+			Tél : 04.76.53.99.99<br>
+			Fax : 04.76.53.95.16
+		</div>
+	</div>
+</div>
+<!-- Formulaire -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-md-4 col-md-offset-4">
+			{% if (submit == false) %}
+			<form class="formContact" action="{{path('isea_app_contactsubmit')}}" method="post">
+				<input id="nom" name="nom" type="text" placeholder="Nom ou nom de la société" required/>
+				<input id="mail" name="mail" type="email" placeholder="Adresse e-mail" required/>
+				<input id="cp" name="cp" type="text" placeholder="Code postal" maxlength="5" required/>
+				<textarea id="text" name="text" placeholder="Texte...." required></textarea>
+				<button class="button button-red button-md">Envoyer</button>
+			</form>
+			{% else %}
+			{% endif %}
+			<a href="{{ path('isea_app_articles') }}" class="button button-red button-md">Consulter tous les articles</a>
+			<a href="{{ path('isea_app_articles') }}" class="button button-red button-md">Nous contacter</a>
+		</div>
+	</div>
+</div>
+{% endblock %}

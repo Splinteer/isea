@@ -1,0 +1,60 @@
+isea_app_backoffice:
+    path:     /backoffice
+    defaults: { _controller: iseaAppBundle:Default:backoffice}
+
+isea_app_backoffice_article:
+    resource: "@iseaAppBundle/Resources/config/routing/article.yml"
+    prefix:   /backoffice/article
+
+isea_app_backoffice_user:
+    resource: "@iseaAppBundle/Resources/config/routing/user.yml"
+    prefix:   /backoffice/user
+
+isea_app_homepage:
+    path:     /
+    defaults: { _controller: iseaAppBundle:Default:index }
+
+isea_app_products:
+    path:     /produits
+    defaults: { _controller: iseaAppBundle:Default:products }
+
+isea_app_boutique:
+    path:     /boutique
+    defaults: { _controller: iseaAppBundle:Default:boutique }
+
+isea_app_documents:
+    path:     /documents
+    defaults: { _controller: iseaAppBundle:Default:documents }
+
+isea_app_articles:
+    path:     /articles/{page}
+    defaults: { _controller: iseaAppBundle:Default:articles, page: 1 }
+
+isea_app_article:
+    path:     /article/{id}-{key}
+    defaults: { _controller: iseaAppBundle:Default:article }
+
+isea_app_contact:
+    path:     /contact
+    defaults: { _controller: iseaAppBundle:Default:contact }
+
+isea_app_contactsubmit:
+    path:     /contactsubmit
+    defaults: { _controller: "iseaAppBundle:Default:contactsubmit" }
+    requirements: { _method: post }
+
+isea_app_profil:
+    path:     /user/profil
+    defaults: { _controller: iseaAppBundle:Default:profil}
+isea_app_inscription:
+    path:     /inscription
+    defaults: { _controller: "iseaAppBundle:Security:inscription" }
+    requirements: { _method: post }
+
+login:
+    pattern:     /login
+    defaults: { _controller: iseaAppBundle:Security:login}
+login_check:
+    pattern: /login_check
+logout:
+    pattern: /logout

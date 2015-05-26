@@ -1,0 +1,44 @@
+{% extends "iseaAppBundle::Layout/backoffice_layout.html.twig" %}
+
+{% block body -%}
+    <div class="container-fluid">
+        <h1>Articles</h1>
+        <table class="records_list">
+            <thead>
+                <tr>
+                    <th width="5%">Id</th>
+                    <th width="10%">Titre</th>
+                    <th width="50%">Resume</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('backoffice_article_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.titre }}</td>
+                    <td>{{ entity.resume }}</td>
+                    <td>{% if entity.date %}{{ entity.date|date('d-m-Y H:i:s') }}{% endif %}</td>
+                    <td>
+                    <ul>
+                        <li>
+                            <a class="button button-red" href="{{ path('isea_app_article', { 'id': entity.id, 'key' : entity.getTitre|replace({" " : "-"}) }) }}">Afficher</a>
+                            <a class="button button-red" href="{{ path('backoffice_article_edit', { 'id': entity.id }) }}">Editer</a>
+                        </li>
+                    </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+            <ul>
+            <li>
+                <a class="button button-red" href="{{ path('backoffice_article_new') }}">
+                    Nouvel article
+                </a>
+            </li>
+        </ul>
+    </div>
+    {% endblock %}

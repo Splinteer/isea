@@ -1,0 +1,300 @@
+<?php
+
+namespace isea\AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+
+/**
+ * User
+ */
+class User  implements UserInterface, \Serializable
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $nom;
+
+    /**
+     * @var string
+     */
+    private $prenom;
+
+    /**
+     * @var string
+     */
+    private $mail;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+    /**
+     * @var integer
+     */
+    private $admin;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $articleUser;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->articleUser = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return User
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     * @return User
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string 
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set mail
+     *
+     * @param string $mail
+     * @return User
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * Get mail
+     *
+     * @return string 
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set admin
+     *
+     * @param integer $admin
+     * @return User
+     */
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
+
+    /**
+     * Get admin
+     *
+     * @return integer 
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
+    }
+
+    /**
+     * Add articleUser
+     *
+     * @param \isea\AppBundle\Entity\Article $articleUser
+     * @return User
+     */
+    public function addArticleUser(\isea\AppBundle\Entity\Article $articleUser)
+    {
+        $this->articleUser[] = $articleUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove articleUser
+     *
+     * @param \isea\AppBundle\Entity\Article $articleUser
+     */
+    public function removeArticleUser(\isea\AppBundle\Entity\Article $articleUser)
+    {
+        $this->articleUser->removeElement($articleUser);
+    }
+
+    /**
+     * Get articleUser
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticleUser()
+    {
+        return $this->articleUser;
+    }
+
+    public function __toString() {
+        return $this->getNom()." ".$this->getPrenom();
+    }
+
+
+    //Permet d'utiliser l'entité comme un user symfony
+    public function isAdministrateur(){
+        return $this->admin == 1;
+    }
+    public function getUsername() {
+        return $this->mail; // l'email est utilisé comme login
+    }
+    public function getSalt() {
+        return null; // mot de passe non encrypté
+    }
+    public function getRoles() {
+        if ($this->isAdministrateur()){ // Si le client est administrateur
+            return array('ROLE_ADMIN');
+        }else{// on lui accorde le rôle ADMIN else
+            return array('ROLE_USER'); // sinon le rôle USER
+        }
+    }
+    public function eraseCredentials(){
+        // rien à faire ici
+    }
+    public function serialize() { // pour pouvoir sérialiser le Client en session
+        return serialize(array($this->id)); }
+    public function unserialize($serialized) {
+        list ($this->id) = unserialize($serialized);
+    }
+    /**
+     * @var string
+     */
+    private $fonction;
+
+    /**
+     * @var string
+     */
+    private $photo;
+
+
+    /**
+     * Set fonction
+     *
+     * @param string $fonction
+     * @return User
+     */
+    public function setFonction($fonction)
+    {
+        $this->fonction = $fonction;
+
+        return $this;
+    }
+
+    /**
+     * Get fonction
+     *
+     * @return string 
+     */
+    public function getFonction()
+    {
+        return $this->fonction;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     * @return User
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+}

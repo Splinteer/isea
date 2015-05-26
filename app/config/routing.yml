@@ -1,0 +1,3 @@
+isea_app:
+    resource: "@iseaAppBundle/Resources/config/routing.yml"
+    prefix:   /
