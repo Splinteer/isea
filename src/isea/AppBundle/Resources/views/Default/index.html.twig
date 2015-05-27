@@ -24,15 +24,15 @@
 	</div>
 </div>
 <!-- Nos produits -->
-<div id="ourproduct" class="container-fluid">
+<div id="ourproduct" class="container-fluid animatedParent animateOnce">
 	<div class="row ourproduct">
 		<div class="col-xs-12 col-md-4 col-md-offset-4">
-			<h2>Nos Produits</h2>
-			<p>ISEA France est l’un des leaders français dans la fabrication de fermetures industrielles et commerciales.</p>
-			<p>ISEA France, c’est 35 ans d’expérience et 3 sites en France pour une capacité de production de 15 000 portes.</p>
-			<p>Nos produits sont commercialisés exclusivement auprès des professionnels de la fermeture.</p>
-			<a href="{{ path('isea_app_products')}}" class="button button-lg button-fullred">Consulter l'ensemble de nos produits</a><br>
-			<div id="rapidAccessButton" class="button button-xs button-transparent">Accès rapide</div>
+			<h2 class="animated growIn slowest">Nos Produits</h2>
+			<p class="animated bounceInRight">ISEA France est l’un des leaders français dans la fabrication de fermetures industrielles et commerciales.</p>
+			<p class="animated bounceInLeft">ISEA France, c’est 35 ans d’expérience et 3 sites en France pour une capacité de production de 15 000 portes.</p>
+			<p class="animated bounceInRight">Nos produits sont commercialisés exclusivement auprès des professionnels de la fermeture.</p>
+			<a href="{{ path('isea_app_products')}}" class="button button-lg button-fullred animated growIn slowest">Consulter l'ensemble de nos produits</a><br>
+			<div id="rapidAccessButton" class="button button-xs button-transparent animated fadeInUpShort slow">Accès rapide</div>
 			<span id="rapidAccess">
 				<hr/>
 				<div class="col-md-3 col-md-offset-1">Catégorie 1</div>
@@ -45,8 +45,8 @@
 <!-- Catégories -->
 <div class="container-fluid">
 	<div class="row">
-		<div class="row-same-height">
-			<div class="col-xs-12 col-md-4 col-md-height">
+		<div class="row-same-height animatedParent animateOnce">
+			<div class="col-xs-12 col-md-4 col-md-height animated fadeInLeft">
 				<span class="square">
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
@@ -58,7 +58,7 @@
 					</div>
 				</span>
 			</div>
-			<div class="col-xs-12 col-md-4 col-md-height">
+			<div class="col-xs-12 col-md-4 col-md-height animated fadeInUp">
 				<span class="square">
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
@@ -70,7 +70,7 @@
 					</div>
 				</span>
 			</div>
-			<div class="col-xs-12 col-md-4 col-md-height">
+			<div class="col-xs-12 col-md-4 col-md-height  animated fadeInRight">
 				<span class="square">
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
@@ -86,8 +86,8 @@
 	</div>
 </div>
 <!-- Actu -->
-<div id="carousel-articles" class="carousel slide greybg" data-ride="carousel">
-	<div class="row">
+<div id="carousel-articles" class="carousel slide greybg animatedParent animateOnce" data-ride="carousel">
+	<div class="row  animated growIn">
 		<h4>Dernières actualités</h4><br>
 		<ol class="carousel-indicators">
 			{% for article in articles %}
@@ -97,7 +97,7 @@
 	</div>
 
   	<!-- Wrapper for slides -->
-	<div class="carousel-inner" role="listbox">
+	<div class="carousel-inner  animated growIn" role="listbox">
 		{% for article in articles %}
 		<div class="item {{ (loop.index == 1)? 'active' : '' }}">
 			<div class="row">
@@ -114,7 +114,7 @@
 		</div>
 		{% endfor %}
 	</div>
-	<div class="row">
+	<div class="row  animated growIn">
 		{% for article in articles %}
 			{{ (loop.index != 1)? '/ ' : '' }}
 			<span data-target="#carousel-articles" data-slide-to="{{ loop.index - 1 }}" class="titreCarousel">{{ article.getTitre }}</span>

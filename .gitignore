@@ -12,5 +12,6 @@ web/bundles/*
 /app/logs/*
 /vendor/
 /app/config/parameters.yml
+/app/config/parameters_prod.yml
 .DS_Store
 /.sass-cache
