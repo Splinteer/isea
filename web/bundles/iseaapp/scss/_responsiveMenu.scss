@@ -1,0 +1,74 @@
+$maxManu: 640px!default;
+$menuWidth: 250px!default;
+$menucolor: #FFF!default;
+@media only screen and (max-width: $maxMenu){
+	.container, .container-fluid, .site-pusher{ height: 100%; }
+	.container, .container-fluid{overflow: hidden;}
+	.site-pusher{
+		@include transition-duration(.5s);
+		@include transform(translate3d(0,0,0));
+	}
+	.header{
+		position: static;
+		border: none;
+
+	}
+	.site-content{
+		position: absolute;
+		//top: 0;//Sous le menu
+		top: 66px; //Toute la page
+		right: 0;left: 0;bottom: 0;
+		padding-top: 0;
+		overflow-y: scroll;
+		--webkit-overflow-scrolling: touch;
+		background-color: $bgcolor;//Sous le menu
+	}
+	.header__icon{
+		display: block;
+		width: 60px;height: 66px;
+		position: relative;
+		float: left;
+		cursor: pointer;
+		&:after{
+			content: '';
+			position: absolute;
+			display: block;
+			width: 16px;
+			height: 0;
+			top: 16px;left: 22px;
+			@include box-shadow(0 10px 0 1px #FFF, 0 16px 0 1px #FFF, 0 22px 0 1px #FFF);
+		}
+	}
+	.menu{
+		display: block;
+		position: absolute;
+		//top: 66px;//Sous le menu
+		top: 0;//Toute la page
+		left: 0;//bottom: 0;
+		width: $menuWidth;
+		//background-color: red;
+		height: 100%;
+		/* Menu scrollable
+		overflow-y: scroll;
+		--webkit-overflow-scrolling: touch;
+		*/
+		@include transform(translate3d(-$menuWidth,0,0));//Toute la page
+		a{
+			display: block;
+			height: 40px;
+			line-height: 40px;
+			border-bottom: 1px solid $menucolor;
+		}
+	}
+	.with--sidebar{
+		.site-pusher{@include transform(translate3d($menuWidth,0,0));}
+		.site-cache{
+			position: absolute;
+			top: 0;right: 0;bottom: 0;left: 0;
+			background-color: rgba(0,0,0,0.4);
+			@include transition-property(background-color);
+  			@include transition-duration(0.5s);
+  			z-index: 3;
+		}
+	}
+}
