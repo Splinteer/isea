@@ -3,10 +3,8 @@
 <head>
 	<title>ISEA</title>
 	{% stylesheets 'bundles/iseaapp/css/*' filter='cssrewrite' %}
+	    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/iseaapp/css/normalize.min.css') }}">
 	    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/iseaapp/css/style.css') }}">
-	    <!--[if lte IE 9]>
-		      <link href='{{ asset('bundles/iseaapp/css/animations-ie-fix.css') }}' rel='stylesheet'>
-		<![endif]-->
 	{% endstylesheets %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
