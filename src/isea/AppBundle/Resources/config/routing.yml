@@ -1,6 +1,14 @@
+isea_app_backoffice_demande:
+    resource: "@iseaAppBundle/Resources/config/routing/demande.yml"
+    prefix:   /backoffice/demande
+
 isea_app_backoffice:
     path:     /backoffice
     defaults: { _controller: iseaAppBundle:Default:backoffice}
+
+isea_app_backoffice_offre:
+    resource: "@iseaAppBundle/Resources/config/routing/offre.yml"
+    prefix:   /backoffice/offre
 
 isea_app_backoffice_article:
     resource: "@iseaAppBundle/Resources/config/routing/article.yml"
@@ -9,6 +17,10 @@ isea_app_backoffice_article:
 isea_app_backoffice_user:
     resource: "@iseaAppBundle/Resources/config/routing/user.yml"
     prefix:   /backoffice/user
+
+isea_app_backoffice_offre:
+    resource: "@iseaAppBundle/Resources/config/routing/offre.yml"
+    prefix:   /backoffice/offre
 
 isea_app_homepage:
     path:     /
@@ -37,6 +49,10 @@ isea_app_article:
 isea_app_contact:
     path:     /contact
     defaults: { _controller: iseaAppBundle:Default:contact }
+
+isea_app_recrutement:
+    path:     /recrutement
+    defaults: { _controller: iseaAppBundle:Default:recrutement }
 
 isea_app_contactsubmit:
     path:     /contactsubmit

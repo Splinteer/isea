@@ -19,10 +19,10 @@ isea\AppBundle\Entity\Demande:
         date:
             type: datetime
     manyToOne:
-        user:
-            targetEntity: User
-            inversedBy: articleUser
+        offre:
+            targetEntity: Offre
+            inversedBy: demandeOffre
             joinColumn:
-                name: idUser
+                name: idOffre
                 referencedColumnName: id
     lifecycleCallbacks: {  }

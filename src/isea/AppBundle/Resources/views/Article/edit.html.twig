@@ -1,6 +1,7 @@
 {% extends "iseaAppBundle::Layout/backoffice_layout.html.twig" %}
 
 {% block body -%}
+    <div class="container-fluid">
     <h1>Edition d'article</h1>
 	{{ form_start(edit_form, {'attr': {'class': 'backofficeForm'}}) }}
 		{{ form(edit_form) }}
@@ -14,4 +15,5 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+</div>
 {% endblock %}

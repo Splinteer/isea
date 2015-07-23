@@ -1,0 +1,30 @@
+backoffice_offre:
+    path:     /
+    defaults: { _controller: "iseaAppBundle:Offre:index" }
+
+backoffice_offre_show:
+    path:     /{id}/show
+    defaults: { _controller: "iseaAppBundle:Offre:show" }
+
+backoffice_offre_new:
+    path:     /new
+    defaults: { _controller: "iseaAppBundle:Offre:new" }
+
+backoffice_offre_create:
+    path:     /create
+    defaults: { _controller: "iseaAppBundle:Offre:create" }
+    methods:  POST
+
+backoffice_offre_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "iseaAppBundle:Offre:edit" }
+
+backoffice_offre_update:
+    path:     /{id}/update
+    defaults: { _controller: "iseaAppBundle:Offre:update" }
+    methods:  [POST, PUT]
+
+backoffice_offre_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "iseaAppBundle:Offre:delete" }
+    methods:  [POST, DELETE]

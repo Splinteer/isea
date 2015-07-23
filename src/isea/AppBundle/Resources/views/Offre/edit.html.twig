@@ -1,0 +1,20 @@
+{% extends "iseaAppBundle::Layout/backoffice_layout.html.twig" %}
+
+{% block body -%}
+	<div class="container-fluid">
+    <h1>Edition d'offre</h1>
+
+    {{ form_start(edit_form, {'attr': {'class': 'backofficeForm'}}) }}
+		{{ form(edit_form) }}
+	{{ form_end(edit_form) }}
+
+        <ul class="record_actions">
+		    <li>
+		        <a class="button button-red" href="{{ path('backoffice_offre') }}">
+		            Retour à la liste
+		        </a>
+		    </li>
+		    <li>{{ form(delete_form) }}</li>
+		</ul>
+	</div>
+{% endblock %}

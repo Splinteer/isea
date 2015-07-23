@@ -64,6 +64,13 @@ class DefaultController extends Controller
         return $this->render('iseaAppBundle:Default:contact.html.twig', array('submit' => false));
     }
 
+    public function recrutementAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $offres = $em->getRepository('iseaAppBundle:Offre')->findAll();
+        return $this->render('iseaAppBundle:Default:recrutement.html.twig', array('offres' => $offres));
+    }
+
     public function contactsubmitAction()
     {
         $message = \Swift_Message::newInstance()

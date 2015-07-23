@@ -2,7 +2,7 @@
 
 {% block body -%}
     <div class="container-fluid">
-    <h1>Article</h1>
+    <h1>Offre</h1>
 
     <table class="record_properties">
         <tbody>
@@ -11,20 +11,12 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Titre</th>
-                <td>{{ entity.titre }}</td>
+                <th>Libelle</th>
+                <td>{{ entity.libelle }}</td>
             </tr>
             <tr>
                 <th>Resume</th>
                 <td>{{ entity.resume }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ entity.contenu }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>
     </table>
@@ -42,5 +34,5 @@
         </li>
         <li>{{ form(delete_form) }}</li>
     </ul>
-    <div class="container-fluid">
+    </div>
 {% endblock %}

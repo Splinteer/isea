@@ -14,4 +14,8 @@ isea\AppBundle\Entity\Offre:
             length: 255
         resume:
             type: text
+    oneToMany:
+        demandeOffre:
+            targetEntity: Demande
+            mappedBy: offre
     lifecycleCallbacks: {  }

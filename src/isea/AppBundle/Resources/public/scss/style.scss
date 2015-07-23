@@ -164,7 +164,24 @@ html, body{
     @include transition(height .2s);
 }
 .button-red:hover:after { height:100%;}
-
+.button-black {
+  border: 1px solid #000;
+  color: #000 !important;
+  position:relative;
+  z-index:1;
+  @include transition(color .2s);
+}
+.button-black:hover { color: #FFF!important; }
+.button-black:after {
+    content: "";
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:0px;
+    background:#000;
+    z-index:-1;
+    @include transition(height .2s);
+}
+.button-black:hover:after { height:100%;}
 
 .button-transparent{
 	border: 1px solid #FFF;

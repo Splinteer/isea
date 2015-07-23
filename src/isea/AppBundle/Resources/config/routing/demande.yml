@@ -1,0 +1,30 @@
+backoffice_demande:
+    path:     /
+    defaults: { _controller: "iseaAppBundle:Demande:index" }
+
+backoffice_demande_show:
+    path:     /{id}/show
+    defaults: { _controller: "iseaAppBundle:Demande:show" }
+
+backoffice_demande_new:
+    path:     /new
+    defaults: { _controller: "iseaAppBundle:Demande:new" }
+
+backoffice_demande_create:
+    path:     /create
+    defaults: { _controller: "iseaAppBundle:Demande:create" }
+    methods:  POST
+
+backoffice_demande_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "iseaAppBundle:Demande:edit" }
+
+backoffice_demande_update:
+    path:     /{id}/update
+    defaults: { _controller: "iseaAppBundle:Demande:update" }
+    methods:  [POST, PUT]
+
+backoffice_demande_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "iseaAppBundle:Demande:delete" }
+    methods:  [POST, DELETE]
