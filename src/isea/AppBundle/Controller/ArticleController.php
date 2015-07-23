@@ -153,7 +153,7 @@ class ArticleController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'button button-red')));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'button button-red', 'formnovalidate' => 'true')));
 
         return $form;
     }
@@ -161,23 +161,26 @@ class ArticleController extends Controller
      * Edits an existing Article entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction($id)
     {
+        $request = $this->get('request');
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('iseaAppBundle:Article')->find($id);
-
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Article entity.');
+            throw $this->createNotFoundException('Impossible de trouver l\'article.');
         }
-
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
+        $deleteForm = $this->createDeleteForm($id);
+        if ($request->getMethod() == 'POST') {
+            $editForm->bind($request);
 
-        if ($editForm->isValid()) {
-            $em->flush();
-            return $this->redirect($this->generateUrl('backoffice_article_edit', array('id' => $id)));
+            if ($editForm->isValid()) {
+                // perform some action, such as save the object to the database
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('backoffice_article_edit', array('id' => $id)));
+            }
         }
 
         return $this->render('iseaAppBundle:Article:edit.html.twig', array(

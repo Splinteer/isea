@@ -1,0 +1,17 @@
+isea\AppBundle\Entity\Offre:
+    type: entity
+    table: null
+    repositoryClass: isea\AppBundle\Entity\OffreRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        libelle:
+            type: string
+            length: 255
+        resume:
+            type: text
+    lifecycleCallbacks: {  }

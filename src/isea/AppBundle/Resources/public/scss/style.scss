@@ -1,5 +1,7 @@
 @import "compass";
 @import "reset";
+@import "normalize";
+@import "animate";
 // Core variables and mixins
 
 @import "variables";
@@ -7,6 +9,7 @@
 @import "mixins";
 @import "bootstrap/grid";
 @import "bootstrap/carousel";
+@import "bootstrap/modals";
 @import "bootstrap/component-animations";
 @import "sameheightrow";
 //@import "responsiveMenu";
@@ -26,9 +29,20 @@
 
 }
 
-/** PARAM GENERAUX  **/
+@font-face {
+    font-family: 'futura_ltcondensed';
+    src: url('../font/futura/futuralt-condensed-webfont.eot');
+    src: url('../font/futura/futuralt-condensed-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/futura/futuralt-condensed-webfont.woff2') format('woff2'),
+         url('../font/futura/futuralt-condensed-webfont.woff') format('woff'),
+         url('../font/futura/futuralt-condensed-webfont.ttf') format('truetype'),
+         url('../font/futura/futuralt-condensed-webfont.svg#futura_ltcondensed') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
-.test{background:red;}
+}
+
+/** PARAM GENERAUX  **/
 
 *,*:before,*:after {@include box-sizing(border-box);}
 
@@ -52,7 +66,8 @@ html, body{
 		font-size: #{1*(7-$i)/2}rem;
 		font-weight: bold;
 		margin: 10px 0 10px 0;
-		font-family: "Futura-CondensedMedium", sans-serif, "Century Gothic", CenturyGothic, "Apple Gothic", AppleGothic, "URW Gothic L", "Avant Garde", sans-serif;
+		font-family: 'futura_ltcondensed', sans-serif;
+		font-weight: 500;
 	}
 }
 
@@ -61,7 +76,6 @@ html, body{
 	color: #000;
 	padding: 10px 10%;
 }
-
 .red{
 	color: $red;
 }
@@ -89,6 +103,10 @@ html, body{
 
 .full{
 	width: 100%;
+}
+
+.carousel{
+	overflow-x: hidden;
 }
 
 /* BUTTON */
@@ -121,6 +139,13 @@ html, body{
 	font-size: 1rem;
 }
 
+.button-dl{
+  background-image: url('../img/button-dl.gif');
+  width: 40px; height: 40px;
+  border: none;
+  @include transition(background-image .2s);
+}
+.button-dl:hover{background-image: url('../img/button-dl-hover.gif');}
 .button-red {
 	border: 1px solid $red;
 	color: $red !important;
@@ -157,8 +182,24 @@ html, body{
 
 .header{
 	margin: 0;
-	background-color: #000;
 	height: 70px;
+}
+
+.header-dark{
+	background-color: #000;
+	a{color: #FFF;}
+	a:hover{color: $grey;}
+	.menu{
+		a{padding: 5px 10px; border: 1px solid #FFF;}
+	}
+}
+.header-light{
+	background-color: #FFF;
+	a{color: #000;}
+	a:hover{color: black;}
+	.menu{
+		a{padding: 5px 10px; border: 1px solid #000;}
+	}
 }
 
 .nomgtop{
@@ -179,8 +220,6 @@ html, body{
 	float: right;
 	text-align: right;
 	margin: 10px 90px;
-	a{padding: 5px 10px; border: 1px solid #FFF; color: #FFF;}
-	a:hover{color: #grey;}
 }
 
 .introPhrase{
@@ -201,8 +240,8 @@ html, body{
 	padding: 20px 40px;
 	border: 5px solid #FFF;
 	text-transform: uppercase;
-	font-family: "Futura-CondensedMedium", sans-serif, "Century Gothic", CenturyGothic, "Apple Gothic", AppleGothic, "URW Gothic L", "Avant Garde", sans-serif;
-
+	font-family: 'futura_ltcondensed', sans-serif;
+	font-weight: 500;
 }
 
 /** HOMEPAGE (hors intro) */
@@ -269,9 +308,15 @@ footer ul li{
 .backofficeForm{
 	padding: 20px;
 	label{
-		display: block;
+		display: inline-block;
+		width: 150px;
 	}
+}
 
+.record_properties th{
+	width: 100px;
+	text-align: left;
+	padding: 5px 0;
 }
 
 //Tablettes et plus grand
@@ -298,4 +343,139 @@ footer ul li{
 //Large desktop
 @media only screen and (min-width: $screen-lg){
 
+}
+
+.animatedParent{
+	overflow: hidden;
+}
+
+/*** LOGIN ****/
+
+.modal-content{
+    border: none;
+}
+
+.modal-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -15rem;
+  width: 30rem;
+  height: 53rem;
+  overflow: hidden;
+}
+
+.login {
+  position: relative;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  transform: scale(1);
+  
+  input, button {
+    outline: none;
+    border: none;
+  }
+
+  &__check {
+    position: absolute;
+    top: 16rem;
+    left: 13.5rem;
+    width: 14rem;
+    height: 2.8rem;
+    background: #FFF;
+    transform-origin: 0 100%;
+    transform: rotate(-45deg);
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 100%;
+      width: 2.8rem;
+      height: 5.2rem;
+      background: #fff;
+      box-shadow: inset -0.2rem -2rem 2rem rgba(0,0,0,0.2);
+    }
+  }
+
+  &__form {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+  }
+
+  &__row {
+    height: 5rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  &__input {
+    display: inline-block;
+    width: 22rem;
+    height: 100%;
+    padding-left: 1.5rem;
+    font-size: 1.5rem;
+    background: transparent;
+    color: #FDFCFD;
+  }
+  
+  &__submit {
+    position: relative;
+    width: 100%;
+    height: 4rem;
+    margin: 5rem 0 2.2rem;
+    color: rgba(255,255,255,0.8);
+    background: rgb(212, 3, 55);
+    font-size: 1.5rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: width 0.3s 0.15s, font-size 0.1s 0.15s;
+  }
+
+  &__signup {
+    font-size: 1.2rem;
+    color: #ABA8AE;
+
+    a {
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animatePath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.btnImgDl{
+  width : 40px;
+    height : 40px;
+    display : block; /*Très important, sinon les dimensions ne sont pas prises en compte*/
+    background : url('../img/dlBtn.png') no-repeat;
+    :hover{
+      background-image : url('../img/dlBtnHover.png');
+    }
+}
+
+.formContact{
+  text-align: center;
+  input, textarea{
+    display: block;
+    margin: 5px auto;
+    width: 70%;
+  }
 }

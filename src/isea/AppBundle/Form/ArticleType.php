@@ -18,17 +18,17 @@ class ArticleType extends AbstractType
             ->add('titre')
             ->add('resume', 'textarea', array(
                 'label' => 'Résumé',
+                'required' => false,
                 'attr' => array(
                         'class' => 'tinymce',
-                        'required' => 'true',
                         'data-theme' => 'advanced'
                     )
                 )
             )
             ->add('contenu', 'textarea', array(
+                'required' => false,
                 'attr' => array(
                         'class' => 'tinymce',
-                        'required' => 'true',
                         'data-theme' => 'advanced'
                     )
                 )

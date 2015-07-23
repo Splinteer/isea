@@ -1,0 +1,28 @@
+isea\AppBundle\Entity\Demande:
+    type: entity
+    table: null
+    repositoryClass: isea\AppBundle\Entity\DemandeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titre:
+            type: string
+            length: 255
+        resume:
+            type: text
+        contenu:
+            type: text
+        date:
+            type: datetime
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: articleUser
+            joinColumn:
+                name: idUser
+                referencedColumnName: id
+    lifecycleCallbacks: {  }
