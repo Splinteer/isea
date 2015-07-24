@@ -1,0 +1,33 @@
+isea\AppBundle\Entity\Fidelite:
+    type: entity
+    table: null
+    repositoryClass: isea\AppBundle\Entity\FideliteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        raison:
+            type: string
+            length: 255
+        adresse:
+            type: string
+            length: 255
+        cp:
+            type: string
+            length: 5
+        ville:
+            type: string
+            length: 255
+        telephone:
+            type: string
+            length: 20
+        email:
+            type: string
+            length: 255
+        fax:
+            type: string
+            length: 20
+    lifecycleCallbacks: {  }

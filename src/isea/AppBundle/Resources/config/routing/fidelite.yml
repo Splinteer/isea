@@ -1,0 +1,30 @@
+backoffice_fidelite:
+    path:     /
+    defaults: { _controller: "iseaAppBundle:Fidelite:index" }
+
+backoffice_fidelite_show:
+    path:     /{id}/show
+    defaults: { _controller: "iseaAppBundle:Fidelite:show" }
+
+backoffice_fidelite_new:
+    path:     /new
+    defaults: { _controller: "iseaAppBundle:Fidelite:new" }
+
+backoffice_fidelite_create:
+    path:     /create
+    defaults: { _controller: "iseaAppBundle:Fidelite:create" }
+    methods:  POST
+
+backoffice_fidelite_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "iseaAppBundle:Fidelite:edit" }
+
+backoffice_fidelite_update:
+    path:     /{id}/update
+    defaults: { _controller: "iseaAppBundle:Fidelite:update" }
+    methods:  [POST, PUT]
+
+backoffice_fidelite_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "iseaAppBundle:Fidelite:delete" }
+    methods:  [POST, DELETE]

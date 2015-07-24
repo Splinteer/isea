@@ -1,3 +1,7 @@
+isea_app_backoffice_fidelite:
+    resource: "@iseaAppBundle/Resources/config/routing/fidelite.yml"
+    prefix:   /backoffice/fidelite
+
 isea_app_backoffice_demande:
     resource: "@iseaAppBundle/Resources/config/routing/demande.yml"
     prefix:   /backoffice/demande
@@ -50,13 +54,22 @@ isea_app_contact:
     path:     /contact
     defaults: { _controller: iseaAppBundle:Default:contact }
 
+isea_app_contactsubmit:
+    path:     /contact/submit
+    defaults: { _controller: "iseaAppBundle:Default:contactsubmit" }
+    requirements: { _method: post }
+
 isea_app_recrutement:
     path:     /recrutement
     defaults: { _controller: iseaAppBundle:Default:recrutement }
 
-isea_app_contactsubmit:
-    path:     /contactsubmit
-    defaults: { _controller: "iseaAppBundle:Default:contactsubmit" }
+isea_app_fidelite:
+    path:     /fidelite
+    defaults: { _controller: iseaAppBundle:Fidelite:fidelite }
+
+isea_app_fidelitesubmit:
+    path:     /fidelite/submit
+    defaults: { _controller: "iseaAppBundle:Fidelite:fidelitesubmit" }
     requirements: { _method: post }
 
 isea_app_profil:

@@ -80,4 +80,49 @@ class Offre
     {
         return $this->resume;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $demandeOffre;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->demandeOffre = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add demandeOffre
+     *
+     * @param \isea\AppBundle\Entity\Demande $demandeOffre
+     * @return Offre
+     */
+    public function addDemandeOffre(\isea\AppBundle\Entity\Demande $demandeOffre)
+    {
+        $this->demandeOffre[] = $demandeOffre;
+    
+        return $this;
+    }
+
+    /**
+     * Remove demandeOffre
+     *
+     * @param \isea\AppBundle\Entity\Demande $demandeOffre
+     */
+    public function removeDemandeOffre(\isea\AppBundle\Entity\Demande $demandeOffre)
+    {
+        $this->demandeOffre->removeElement($demandeOffre);
+    }
+
+    /**
+     * Get demandeOffre
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDemandeOffre()
+    {
+        return $this->demandeOffre;
+    }
 }

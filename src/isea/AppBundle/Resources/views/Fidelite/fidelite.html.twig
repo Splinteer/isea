@@ -1,0 +1,25 @@
+{% extends "iseaAppBundle::Layout/light_layout.html.twig" %}
+{% block body %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-md-4 col-md-offset-4">
+			<h1 id='scrollTo' class="scrollTo"><span class="cadre">Programme Fidelité</span></h1>
+		</div>
+	</div>
+</div>
+<!-- Formulaire -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-md-4 col-md-offset-4">
+			{% if (error != false) %}
+				<p class="error">{{error}}</p>
+			{% endif %}
+			{% if (submit == false) %}
+				{{ form_start(form, {'attr': {'class': 'formContact'}}) }}
+					{{ form(form) }}
+				{{ form_end(form) }}
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

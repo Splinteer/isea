@@ -1,0 +1,55 @@
+{% extends "iseaAppBundle::Layout/backoffice_layout.html.twig" %}
+
+{% block body -%}
+    <div class="container-fluid">
+    <h1>Participation au programme de fidelité</h1>
+
+    <table class="records_list" width="100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Raison</th>
+                <th>Adresse</th>
+                <th>Cp</th>
+                <th>Ville</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Fax</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('backoffice_fidelite_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.raison }}</td>
+                <td>{{ entity.adresse }}</td>
+                <td>{{ entity.cp }}</td>
+                <td>{{ entity.ville }}</td>
+                <td>{{ entity.telephone }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.fax }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a class="button button-red" href="{{ path('backoffice_fidelite_show', { 'id': entity.id }) }}">Afficher</a>
+                    </li>
+                    <li>
+                        <a class="button button-red" href="{{ path('backoffice_fidelite_edit', { 'id': entity.id }) }}">Editer</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a class="button button-red" href="{{ path('backoffice_fidelite_new') }}">
+                Créer une nouvelle entrée
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

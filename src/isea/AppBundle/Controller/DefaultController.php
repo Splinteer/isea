@@ -2,7 +2,10 @@
 
 namespace isea\AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use isea\AppBundle\Entity\Fidelite;
+use isea\AppBundle\Form\FideliteType;
 
 class DefaultController extends Controller
 {
@@ -64,22 +67,13 @@ class DefaultController extends Controller
         return $this->render('iseaAppBundle:Default:contact.html.twig', array('submit' => false));
     }
 
+
+
     public function recrutementAction()
     {
         $em = $this->getDoctrine()->getManager();
         $offres = $em->getRepository('iseaAppBundle:Offre')->findAll();
         return $this->render('iseaAppBundle:Default:recrutement.html.twig', array('offres' => $offres));
-    }
-
-    public function contactsubmitAction()
-    {
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
-            ->setFrom($_POST['mail'], $_POST['nom'])
-            ->setTo('sanchezmarvin38@gmail.com')
-            ->setBody($_POST['text']);
-        $this->get('mailer')->send($message);
-        return $this->render('iseaAppBundle:Default:contact.html.twig', array('submit' => true));
     }
 
     public function backofficeAction()

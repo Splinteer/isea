@@ -66,12 +66,13 @@
 			<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.  s neque. Suspendisse in orci enim.
 	Anibh vulputate cursus a sit amet mauris.  s neque. Suspendisse in orci enim rtborejbrojb.</p>
 			<p class="red">Anthony Garzia - Directeur Commercial</p>
-			<a href="#" class="button button-red button-lg">Participer au programme fidélité</a><br>
+			<a href="{{ path('isea_app_fidelite')}}" class="button button-red button-lg">Participer au programme fidélité</a><br>
 			<a href="#" data-toggle="modal" data-target="#loginModal">ou accèder à mon compte</a>
 		</div>
 	</div>
 </div>
 <!-- Login -->
+<form action="{{ path('login_check') }}" method="post">
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -80,17 +81,17 @@
 						<div class="login__check"></div>
 						<div class="login__form">
 							<div class="login__row">
-								<input type="email" class="login__input" placeholder="Adresse mail"/>
+								<input type="email" id="username" name="_username" value="{{last_username}}" class="login__input" placeholder="Adresse mail"/>
 							</div>
 							<div class="login__row">
-								<input type="password" class="login__input" placeholder="Mot de passe"/>
+								<input type="password" id="password" name="_password" class="login__input" placeholder="Mot de passe"/>
 							</div>
-							<button type="button" class="login__submit ">Se connecter</button>
-							<p class="login__signup">Pas encore de compte ? &nbsp;<a>Inscription</a></p>
+							<button type="submit" class="login__submit ">Se connecter</button>
 						</div>
 					</div>
 			</div>
 		</div>
 	</div>
 </div>
+</form>
 {% endblock %}

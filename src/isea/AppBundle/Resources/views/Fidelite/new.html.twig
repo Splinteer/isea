@@ -1,0 +1,17 @@
+{% extends "iseaAppBundle::Layout/backoffice_layout.html.twig" %}
+
+{% block body -%}
+    <div class="container-fluid">
+    <h1>Nouvelle participation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a class="button button-red" href="{{ path('backoffice_fidelite') }}">
+            Retour à la liste
+        </a>
+    </li>
+</ul>
+</div>
+{% endblock %}
