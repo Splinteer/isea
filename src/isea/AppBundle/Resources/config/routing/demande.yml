@@ -10,11 +10,6 @@ backoffice_demande_new:
     path:     /new
     defaults: { _controller: "iseaAppBundle:Demande:new" }
 
-backoffice_demande_create:
-    path:     /create
-    defaults: { _controller: "iseaAppBundle:Demande:create" }
-    methods:  POST
-
 backoffice_demande_edit:
     path:     /{id}/edit
     defaults: { _controller: "iseaAppBundle:Demande:edit" }
@@ -28,3 +23,12 @@ backoffice_demande_delete:
     path:     /{id}/delete
     defaults: { _controller: "iseaAppBundle:Demande:delete" }
     methods:  [POST, DELETE]
+
+isea_app_postuler:
+    path:     /recrutement/{id}-{key}
+    defaults: { _controller: iseaAppBundle:Demande:postuler }
+
+isea_app_demande_create:
+    path:     /recrutement/postuler
+    defaults: { _controller: "iseaAppBundle:Demande:create" }
+    methods:  POST

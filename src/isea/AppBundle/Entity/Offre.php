@@ -125,4 +125,8 @@ class Offre
     {
         return $this->demandeOffre;
     }
+
+    public function __toString() {
+        return $this->getLibelle();
+    }
 }

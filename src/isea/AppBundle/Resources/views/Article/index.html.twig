@@ -18,7 +18,7 @@
                 <tr>
                     <td><a href="{{ path('backoffice_article_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                     <td>{{ entity.titre }}</td>
-                    <td>{{ entity.resume }}</td>
+                    <td>{{ entity.resume|raw }}</td>
                     <td>{% if entity.date %}{{ entity.date|date('d-m-Y H:i:s') }}{% endif %}</td>
                     <td>
                     <ul>

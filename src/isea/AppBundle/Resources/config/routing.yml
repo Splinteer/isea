@@ -1,3 +1,7 @@
+isea_app_backoffice_demande:
+    resource: "@iseaAppBundle/Resources/config/routing/demande.yml"
+    prefix:   /backoffice/demande
+
 isea_app_backoffice_fidelite:
     resource: "@iseaAppBundle/Resources/config/routing/fidelite.yml"
     prefix:   /backoffice/fidelite

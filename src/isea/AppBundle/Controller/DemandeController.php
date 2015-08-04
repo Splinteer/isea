@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use isea\AppBundle\Entity\Demande;
+use isea\AppBundle\Entity\Offre;
 use isea\AppBundle\Form\DemandeType;
 
 /**
@@ -36,21 +37,24 @@ class DemandeController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Demande();
-        $form = $this->createCreateForm($entity);
+
+        $em = $this->getDoctrine()->getManager();
+        $offre = $em->getRepository('iseaAppBundle:Offre')->find($_POST['isea_appbundle_demande']['offre']);
+
+        $form = $this->createCreateForm($entity, $offre);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+            $entity->uploadCV();
+            $entity->uploadLM();
+
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('backoffice_demande_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('isea_app_recrutement'));
         }
-
-        return $this->render('iseaAppBundle:Demande:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->redirect($this->generateUrl('isea_app_postuler', array('id' => $offre->getId(), 'key' => urlencode($offre->getLibelle()))));
     }
 
     /**
@@ -60,14 +64,22 @@ class DemandeController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Demande $entity)
+    private function createCreateForm(Demande $entity, Offre $offre)
     {
         $form = $this->createForm(new DemandeType(), $entity, array(
-            'action' => $this->generateUrl('backoffice_demande_create'),
+            'action' => $this->generateUrl('isea_app_demande_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('offre', 'entity', array(
+            'class' => 'iseaAppBundle:Offre',
+            'label' => ' ',
+            'data' => $offre,
+            'attr' => array('class'=>"hidden")
+        ));
+        $form->add('cv', 'file', array('label'=>'CV'))
+            ->add('lm', 'file', array('label'=>'Lettre de motivation'));
+        $form->add('submit', 'submit', array('label' => 'Postuler', 'attr' => array('class' => 'button button-red')));
 
         return $form;
     }
@@ -98,7 +110,7 @@ class DemandeController extends Controller
         $entity = $em->getRepository('iseaAppBundle:Demande')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Demande entity.');
+            throw $this->createNotFoundException('Impossible de trouver la demande.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -120,7 +132,7 @@ class DemandeController extends Controller
         $entity = $em->getRepository('iseaAppBundle:Demande')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Demande entity.');
+            throw $this->createNotFoundException('Impossible de trouver la demande.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -147,7 +159,7 @@ class DemandeController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class' => 'button button-red')));
 
         return $form;
     }
@@ -220,5 +232,19 @@ class DemandeController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    public function postulerAction($id, $key)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $offre = $em->getRepository('iseaAppBundle:Offre')->find($id);
+
+        $entity = new Demande();
+        $form   = $this->createCreateForm($entity, $offre);
+
+        return $this->render('iseaAppBundle:Default:recrutementForm.html.twig', array(
+            'offre' => $offre,
+            'form' => $form->createView(),
+        ));
     }
 }

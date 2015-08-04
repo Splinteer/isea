@@ -11,20 +11,28 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Titre</th>
-                <td>{{ entity.titre }}</td>
+                <th>Nom</th>
+                <td>{{ entity.nom }}</td>
             </tr>
             <tr>
-                <th>Resume</th>
-                <td>{{ entity.resume }}</td>
+                <th>Prenom</th>
+                <td>{{ entity.prenom }}</td>
             </tr>
             <tr>
-                <th>Contenu</th>
-                <td>{{ entity.contenu }}</td>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
             </tr>
             <tr>
-                <th>Date</th>
-                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+                <th>Message</th>
+                <td>{{ entity.message }}</td>
+            </tr>
+            <tr>
+                <th>CV</th>
+                <td><a href="{{ entity.getWebPathCV }}" style="float: right;" target="_blank" class="button button-xs button-dl" download></a></td>
+            </tr>
+            <tr>
+                <th>Lettre de motivation</th>
+                <td><a href="{{ entity.getWebPathLM }}" style="float: right;" target="_blank" class="button button-xs button-dl" download></a></td>
             </tr>
         </tbody>
     </table>
@@ -34,8 +42,6 @@
         <a class="button button-red" href="{{ path('backoffice_demande') }}">
             Retour à la liste
         </a>
-    </li>
-    <li>
         <a class="button button-red" href="{{ path('backoffice_demande_edit', { 'id': entity.id }) }}">
             Editer
         </a>

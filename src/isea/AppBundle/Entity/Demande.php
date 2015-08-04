@@ -3,6 +3,7 @@
 namespace isea\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Demande
@@ -17,27 +18,46 @@ class Demande
     /**
      * @var string
      */
-    private $titre;
+    private $nom;
 
     /**
      * @var string
      */
-    private $resume;
+    private $prenom;
 
     /**
      * @var string
      */
-    private $contenu;
+    private $email;
 
     /**
-     * @var \DateTime
+     * @var string
      */
-    private $date;
+    private $message;
 
     /**
      * @var \isea\AppBundle\Entity\Offre
      */
     private $offre;
+
+    /**
+     * @var string
+     */
+    private $cvPath;
+
+    /**
+     * @var string
+     */
+    private $lmPath;
+
+     /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $cv;
+     /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $lm;
 
 
     /**
@@ -51,95 +71,95 @@ class Demande
     }
 
     /**
-     * Set titre
+     * Set nom
      *
-     * @param string $titre
+     * @param string $nom
      * @return Demande
      */
-    public function setTitre($titre)
+    public function setNom($nom)
     {
-        $this->titre = $titre;
+        $this->nom = $nom;
     
         return $this;
     }
 
     /**
-     * Get titre
+     * Get nom
      *
      * @return string 
      */
-    public function getTitre()
+    public function getNom()
     {
-        return $this->titre;
+        return $this->nom;
     }
 
     /**
-     * Set resume
+     * Set prenom
      *
-     * @param string $resume
+     * @param string $prenom
      * @return Demande
      */
-    public function setResume($resume)
+    public function setPrenom($prenom)
     {
-        $this->resume = $resume;
+        $this->prenom = $prenom;
     
         return $this;
     }
 
     /**
-     * Get resume
+     * Get prenom
      *
      * @return string 
      */
-    public function getResume()
+    public function getPrenom()
     {
-        return $this->resume;
+        return $this->prenom;
     }
 
     /**
-     * Set contenu
+     * Set email
      *
-     * @param string $contenu
+     * @param string $email
      * @return Demande
      */
-    public function setContenu($contenu)
+    public function setEmail($email)
     {
-        $this->contenu = $contenu;
+        $this->email = $email;
     
         return $this;
     }
 
     /**
-     * Get contenu
+     * Get email
      *
      * @return string 
      */
-    public function getContenu()
+    public function getEmail()
     {
-        return $this->contenu;
+        return $this->email;
     }
 
     /**
-     * Set date
+     * Set message
      *
-     * @param \DateTime $date
+     * @param string $message
      * @return Demande
      */
-    public function setDate($date)
+    public function setMessage($message)
     {
-        $this->date = $date;
+        $this->message = $message;
     
         return $this;
     }
 
     /**
-     * Get date
+     * Get message
      *
-     * @return \DateTime 
+     * @return string 
      */
-    public function getDate()
+    public function getMessage()
     {
-        return $this->date;
+        return $this->message;
     }
 
     /**
@@ -151,17 +171,149 @@ class Demande
     public function setOffre(\isea\AppBundle\Entity\Offre $offre = null)
     {
         $this->offre = $offre;
-    
+
         return $this;
     }
 
     /**
      * Get offre
      *
-     * @return \isea\AppBundle\Entity\Offre 
+     * @return \isea\AppBundle\Entity\Offre
      */
     public function getOffre()
     {
         return $this->offre;
+    }
+
+    /**
+     * Set cvPath
+     *
+     * @param string $cvPath
+     * @return Demande
+     */
+    public function setCvPath($cvPath)
+    {
+        $this->cvPath = $cvPath;
+    
+        return $this;
+    }
+
+    /**
+     * Get cvPath
+     *
+     * @return string 
+     */
+    public function getCvPath()
+    {
+        return $this->cvPath;
+    }
+
+    /**
+     * Set lmPath
+     *
+     * @param string $lmPath
+     * @return Demande
+     */
+    public function setLmPath($lmPath)
+    {
+        $this->lmPath = $lmPath;
+    
+        return $this;
+    }
+
+    /**
+     * Get lmPath
+     *
+     * @return string 
+     */
+    public function getLmPath()
+    {
+        return $this->lmPath;
+    }
+
+    //CV
+    public function getAbsolutePathCV()
+    {
+        return null === $this->cvPath ? null : $this->getUploadRootDir().'/'.$this->cvPath;
+    }
+
+    public function getWebPathCV()
+    {
+        return null === $this->cvPath ? null : 'http://' . $_SERVER['HTTP_HOST'] . '/isea/web/'  . $this->getUploadDir().'/'.$this->cvPath;
+    }
+
+    //LM
+    public function getAbsolutePathLM()
+    {
+        return null === $this->lmPath ? null : $this->getUploadRootDir().'/'.$this->lmPath;
+    }
+
+    public function getWebPathLM()
+    {
+        return null === $this->lmPath ? null : 'http://' . $_SERVER['HTTP_HOST'] . '/isea/web/'  . $this->getUploadDir().'/'.$this->lmPath;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'uploads/demandes/';
+    }
+
+    public function uploadCV()
+    {
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        if (null === $this->cv) {
+            return;
+        }
+
+        // utilisez le nom de fichier original ici mais
+        // vous devriez « l'assainir » pour au moins éviter
+        // quelconques problèmes de sécurité
+
+        // la méthode « move » prend comme arguments le répertoire cible et
+        // le nom de fichier cible où le fichier doit être déplacé
+        //$this->cv->move($this->getUploadRootDir(), $this->cv->getClientOriginalName());
+        $name = uniqid('cv_', true) . '.' . $this->cv->guessExtension();
+        $this->cv->move($this->getUploadRootDir(), $name);
+
+        // définit la propriété « path » comme étant le nom de fichier où vous
+        // avez stocké le fichier
+        $this->cvPath = $name;
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->cv = null;
+    }
+    public function uploadLM()
+    {
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        if (null === $this->lm) {
+            return;
+        }
+
+        $path_parts = pathinfo($this->lm);
+
+        // utilisez le nom de fichier original ici mais
+        // vous devriez « l'assainir » pour au moins éviter
+        // quelconques problèmes de sécurité
+
+        // la méthode « move » prend comme arguments le répertoire cible et
+        // le nom de fichier cible où le fichier doit être déplacé
+        //$this->lm->move($this->getUploadRootDir(), $this->lm->getClientOriginalName());
+        $name = uniqid('lm_', true) . '.' . $this->lm->guessExtension();
+        $this->lm->move($this->getUploadRootDir(), $name);
+
+        // définit la propriété « path » comme étant le nom de fichier où vous
+        // avez stocké le fichier
+        $this->lmPath = $name;
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->lm = null;
     }
 }

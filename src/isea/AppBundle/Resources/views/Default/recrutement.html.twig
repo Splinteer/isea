@@ -22,7 +22,7 @@
 					<div class="row">
 						<h3>{{ offre.getLibelle }}</h3>
 						<p>{{ offre.getResume }}</p>
-						<span class="button button-black button-md">Postuler à l'offre</span>
+						<a class="button button-black button-md" href="{{ path('isea_app_postuler', { 'id': offre.id, 'key': offre.getLibelle|replace({" " : "-"}) }) }}">Postuler à l'offre</a>
 					</div>
 				</div>
 			{% endfor %}

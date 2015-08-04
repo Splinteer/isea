@@ -71,6 +71,11 @@ html, body{
 	}
 }
 
+.hidden{
+  display: none;
+  opacity: 0;
+}
+
 .cadre{
 	border: 5px solid #000;
 	color: #000;

@@ -15,11 +15,10 @@ class DemandeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre')
-            ->add('resume')
-            ->add('contenu')
-            ->add('date')
-            ->add('offre')
+            ->add('nom')
+            ->add('prenom')
+            ->add('email', 'email')
+            ->add('message', 'textarea')
         ;
     }
     

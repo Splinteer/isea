@@ -107,7 +107,7 @@
 				<div class="col-xs-8 col-md-4" style="text-align: left">
 					<h3>{{article.getTitre }}</h3>
 					<hr>
-					<p>{{ article.getResume }}</p>
+					<p>{{ article.getResume|raw }}</p>
 					<a href="{{ path('isea_app_article', { 'id': article.id, 'key' : article.getTitre|replace({" " : "-"}) }) }}" class="button button-red button-md">Consulter l'article</a>
 				</div>
 			</div>

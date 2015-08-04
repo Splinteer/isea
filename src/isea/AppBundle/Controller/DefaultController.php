@@ -73,6 +73,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $offres = $em->getRepository('iseaAppBundle:Offre')->findAll();
+
         return $this->render('iseaAppBundle:Default:recrutement.html.twig', array('offres' => $offres));
     }
 

@@ -9,15 +9,21 @@ isea\AppBundle\Entity\Demande:
             generator:
                 strategy: AUTO
     fields:
-        titre:
+        nom:
             type: string
             length: 255
-        resume:
+        prenom:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+        message:
             type: text
-        contenu:
+        cvPath:
             type: text
-        date:
-            type: datetime
+        lmPath:
+            type: text
     manyToOne:
         offre:
             targetEntity: Offre

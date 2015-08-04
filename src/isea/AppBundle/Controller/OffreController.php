@@ -67,7 +67,7 @@ class OffreController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Ajouter', 'attr' => array('class' => 'button button-red')));
+        $form->add('submit', 'submit', array('label' => 'Postuler', 'attr' => array('class' => 'button button-red')));
 
         return $form;
     }
@@ -195,7 +195,7 @@ class OffreController extends Controller
             $entity = $em->getRepository('iseaAppBundle:Offre')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Offre entity.');
+                throw $this->createNotFoundException('Impossible de trouver l\'offre.');
             }
 
             $em->remove($entity);
