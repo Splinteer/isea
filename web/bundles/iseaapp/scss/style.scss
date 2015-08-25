@@ -266,12 +266,22 @@ footer ul li{
 }
 /** Page product **/
 .product{
-	padding: 60px 0;
+    margin: 0;
+	padding: 10% 0;
 	text-align: left;
 	color: #fff;
-	background: url('../img/productbg.jpg') top no-repeat;
+	background: top no-repeat;
   	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
   	background-size: cover; /* version standardisée */
+}
+
+.productCategories{
+    margin-top: 20px;
+    font-size: 1.3em;
+}
+
+.productCategorie h2{
+    color: $red !important;
 }
 
 /** BACKOFFICE  **/

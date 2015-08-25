@@ -1,21 +1,21 @@
 {% extends "iseaAppBundle::Layout/light_layout.html.twig" %}
 {% block body %}
-<div class="container-fluid nomgtop product">
+<div class="container-fluid nomgtop product" style="cursor: pointer; background-image: url('{{ asset('bundles/iseaapp/img/products/Isea-Page-produit-1.jpg') }}');">
 	<div class="row">
 		<div class="col-xs-12 col-md-5 col-lg-3">
 			<h1>Rideaux et grilles</h1>
 			<p>Phrase de descriptif - Courte - Quelques caractères, deux lignes maximum. Bla, Bla le site d’isea France...</p>
 		</div>
 	</div>
-	<div class="row" style="text-align: center;">
-		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Catégorie 1</div>
-		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Catégorie 1</div>
-		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Catégorie 1</div>
-		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Catégorie 1</div>
-		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Catégorie 1</div>
+	<div class="row productCategories" style="text-align: center;">
+		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Rideaux<br>pleins</div>
+		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Grilles à<br>enroulement</div>
+		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Rideaux<br>transparents</div>
+		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Rideaux<br>perforés</div>
+		<div class="col-md-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Rideaux<br>isolés</div>
 	</div>
 </div>
-<div class="container-fluid collapse" id="collapseExample">
+<div class="container-fluid collapse" id="collapseExample" style="cursor: pointer; background-image: url('{{ asset('bundles/iseaapp/img/products/Isea-Page-produit-1.jpg') }}');">
 	<div class="row">
 		<div class="col-xs-12 col-md-6 col-md-offset-3">
 			<h2>Lames agraphées</h2>
